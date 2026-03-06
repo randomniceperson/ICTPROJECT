@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ICT proj website</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 30px;
+    line-height: 1.6;
+    overflow-y: auto;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 200%; height: 200%;
+    background: url('https://i.imgur.com/MwPsnxi.png') repeat;
+    opacity: 0.7;
+    z-index: -1;
+    animation: moveBg 30s linear infinite;
+}
+
+@keyframes moveBg {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-50%, -50%); }
+}
+
+.container {
+    max-width: 850px;
+    margin: auto;
+    padding: 30px;
+    background: #B3FCFC;
+    border: 5px solid #2c3e50;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+h1 { margin-bottom: 20px; }
+
+#title-image { width: 400px; height: auto; }
+
+.text-container {
+    background: #f9f9f9;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 15px;
+    border: 2px solid #ccc;
+}
+
+p {
+    max-width: 700px;
+    margin: 20px auto;
+    color: #2c3e50;
+    text-align: justify;
+    font-size: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+}
+
+p.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1><img src="https://i.imgur.com/d7yzMS9.png" id="title-image"></h1>
+
+    <div class="text-container">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+</div>
+
+<script>
+const paragraphs = document.querySelectorAll('p');
+function checkVisibility() {
+    const windowBottom = window.innerHeight;
+    paragraphs.forEach(p => {
+        if(p.getBoundingClientRect().top < windowBottom - 50) p.classList.add('visible');
+    });
+}
+window.addEventListener('scroll', checkVisibility);
+window.addEventListener('load', checkVisibility);
+</script>
+
+</body>
+</html>
