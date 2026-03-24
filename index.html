@@ -1,93 +1,348 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>ICT proj website</title>
-    <style>
+<meta charset="UTF-8">
+<title>Looking Back — Our Future Careers</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+
+<style>
+
+/* BASE */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
     margin: 0;
-    padding: 30px;
-    line-height: 1.6;
-    overflow-y: auto;
-    position: relative;
+    font-family: 'Indie Flower', cursive;
+    background: #f4f4f4;
+    color: #222;
 }
 
-body::before {
-    content: "";
+/* NAV */
+nav {
     position: fixed;
-    top: 0; left: 0;
-    width: 200%; height: 200%;
-    background: url('https://i.imgur.com/MwPsnxi.png') repeat;
-    opacity: 0.7;
-    z-index: -1;
-    animation: moveBg 30s linear infinite;
+    width: 100%;
+    top: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
+    padding: 12px 0;
+    text-align: center;
+    z-index: 1000;
 }
 
-@keyframes moveBg {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-50%, -50%); }
+nav a {
+    margin: 0 14px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    position: relative;
+    user-select: none;
+    cursor: pointer;
 }
 
-.container {
-    max-width: 850px;
-    margin: auto;
-    padding: 30px;
-    background: #B3FCFC;
-    border: 5px solid #2c3e50;
-    border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 1px;
+    background: #333;
+    transition: 0.3s;
 }
 
-h1 { margin-bottom: 20px; }
-
-#title-image { width: 400px; height: auto; }
-
-.text-container {
-    background: #f9f9f9;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 15px;
-    border: 2px solid #ccc;
+nav a:hover::after {
+    width: 100%;
 }
 
-p {
-    max-width: 700px;
-    margin: 20px auto;
-    color: #2c3e50;
-    text-align: justify;
-    font-size: 20px;
+/* SECTIONS */
+section {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    height: calc(100% - 60px);
+    padding: 60px 20px;
+    overflow-y: auto;
+
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 1s ease;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
 }
 
-p.visible { opacity: 1; transform: translateY(0); }
-    </style>
+section.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* CONTENT */
+.content {
+    max-width: 720px;
+    margin: auto;
+}
+
+/* TEXT */
+h1 { font-size: 30px; }
+h2 {
+    margin-top: 30px;
+    border-left: 3px solid #aaa;
+    padding-left: 10px;
+}
+
+p { line-height: 1.8; }
+
+/* IMAGE PLACEHOLDER */
+.img-placeholder {
+    width: 100%;
+    height: 220px;
+    background: #ddd;
+    border-radius: 12px;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+}
+
+/* IMAGE */
+.section-img {
+    width: 100%;
+    border-radius: 12px;
+    margin: 15px 0;
+}
+
+/* GALLERY */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.gallery img {
+    width: 150px;
+    border-radius: 10px;
+}
+
+/* CONTACT */
+.contact {
+    background: #eee;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* 🧩 PAPER PANEL TRANSITION */
+#panel-transition {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    pointer-events: none;
+}
+
+.panel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.9s ease;
+}
+
+/* 👇 CHANGE THESE IMAGES */
+.panel.left {
+    left: 0;
+    transform: translateX(-100%);
+    background-image: url('https://www.onlygfx.com/wp-content/uploads/2020/02/crumpled-up-ball-paper-2.png');
+}
+
+.panel.right {
+    right: 0;
+    transform: translateX(100%);
+    background-image: url('https://www.onlygfx.com/wp-content/uploads/2020/02/crumpled-up-ball-paper-2.png');
+}
+
+.panel.active.left {
+    transform: translateX(0);
+}
+
+.panel.active.right {
+    transform: translateX(0);
+}
+
+/* ✍️ TYPEWRITER */
+.type {
+    border-right: 2px solid #333;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1><img src="https://i.imgur.com/d7yzMS9.png" id="title-image"></h1>
+<nav>
+<a onclick="switchSection('home')">Home</a>
+<a onclick="switchSection('about')">About</a>
+<a onclick="switchSection('career')">Career</a>
+<a onclick="switchSection('future')">Reflection</a>
+<a onclick="switchSection('gallery')">Gallery</a>
+<a onclick="switchSection('contact')">Contact</a>
+</nav>
 
-    <div class="text-container">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
+<!-- PANEL TRANSITION -->
+<div id="panel-transition">
+<div class="panel left"></div>
+<div class="panel right"></div>
 </div>
 
+<!-- HOME -->
+<section id="home" class="active">
+<div class="content">
+
+<h1 class="type" data-text="Looking Back"></h1>
+<div class="img-placeholder">[ BANNER IMAGE ]</div>
+<p class="type" data-text="This website tells the story of two individuals — their past, their present, and the future they are building."></p>
+
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="content">
+
+<h1 class="type" data-text="About Us"></h1>
+
+<h2>Guy1</h2>
+<div class="img-placeholder">[ IMAGE ]</div>
+<p class="type" data-text="Write your story here. Past, present, growth."></p>
+
+<h2>Girl2</h2>
+<div class="img-placeholder">[ IMAGE ]</div>
+<p class="type" data-text="Write her journey, personality, and strengths."></p>
+
+</div>
+</section>
+
+<!-- CAREER -->
+<section id="career">
+<div class="content">
+
+<h1 class="type" data-text="Our Careers"></h1>
+
+<h2>Guy1</h2>
+<div class="img-placeholder">[ IMAGE ]</div>
+<p class="type" data-text="Explain your career path and why you chose it."></p>
+
+<h2>Girl2</h2>
+<div class="img-placeholder">[ IMAGE ]</div>
+<p class="type" data-text="Explain her career and future goals."></p>
+
+</div>
+</section>
+
+<!-- FUTURE -->
+<section id="future">
+<div class="content">
+
+<h1 class="type" data-text="10 Years Later"></h1>
+
+<h2>Guy1</h2>
+<div class="img-placeholder">[ IMAGE ]</div>
+<p class="type" data-text="Describe your future self."></p>
+
+<h2>Girl2</h2>
+<div class="img-placeholder">[ IMAGE ]</div>
+<p class="type" data-text="Describe her future self."></p>
+
+</div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+<div class="content">
+
+<h1 class="type" data-text="Gallery"></h1>
+
+<div class="gallery">
+<img src="images/img1.jpg">
+<img src="images/img2.jpg">
+<img src="images/img3.jpg">
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<div class="content">
+
+<h1 class="type" data-text="Contact"></h1>
+
+<div class="contact">
+<p>etwhiteside0705lag@student.fatima.edu.ph</p>
+<p>jbopiala0077lag@student.fatima.edu.ph</p>
+</div>
+
+</div>
+</section>
+
 <script>
-const paragraphs = document.querySelectorAll('p');
-function checkVisibility() {
-    const windowBottom = window.innerHeight;
-    paragraphs.forEach(p => {
-        if(p.getBoundingClientRect().top < windowBottom - 50) p.classList.add('visible');
+
+const leftPanel = document.querySelector('.panel.left');
+const rightPanel = document.querySelector('.panel.right');
+
+let current = document.querySelector('.active');
+
+function switchSection(id) {
+    if (current.id === id) return;
+
+    const next = document.getElementById(id);
+
+    /* CLOSE (SLOW) */
+    leftPanel.classList.add('active');
+    rightPanel.classList.add('active');
+
+    setTimeout(() => {
+
+        current.classList.remove('active');
+        next.classList.add('active');
+        current = next;
+
+        startTyping(next);
+
+        /* OPEN (DELAYED REVEAL) */
+        setTimeout(() => {
+            leftPanel.classList.remove('active');
+            rightPanel.classList.remove('active');
+        }, 300);
+
+    }, 900); // slower close
+}
+
+/* TYPEWRITER (SLOWER) */
+function startTyping(section) {
+    const elements = section.querySelectorAll('.type');
+
+    elements.forEach(el => {
+        el.textContent = "";
+        const text = el.getAttribute("data-text");
+        let i = 0;
+
+        function type() {
+            if (i < text.length) {
+                el.textContent += text.charAt(i);
+                i++;
+                setTimeout(type, 45); // 🔥 slower typing
+            }
+        }
+
+        setTimeout(type, 200); // small delay before typing starts
     });
 }
-window.addEventListener('scroll', checkVisibility);
-window.addEventListener('load', checkVisibility);
+
+/* LOAD */
+window.onload = () => {
+    startTyping(document.querySelector('.active'));
+};
+
 </script>
 
 </body>
