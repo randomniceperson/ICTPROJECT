@@ -44,7 +44,6 @@ display: block;
 }
 
 .gallery img {
-    width: 48%;
     height: 160px;
     object-fit: cover;
     border-radius: 10px;
@@ -135,6 +134,7 @@ display: none;
     pointer-events: none;
     transition: opacity 0.35s ease-in-out;
 z-index: 0;
+position: relative;
 }
 
 section.active {
@@ -190,17 +190,27 @@ p { line-height: 1.8; }
 .char-card {
     flex: 1;
     height: 200px;
+    min-height: 200px;
     border-radius: 12px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     cursor: pointer;
     transition: 0.4s;
 
     background-color: #ddd;
 
-    position: relative; /* ✅ needed */
-    overflow: hidden;   /* ✅ keeps overlay inside */
+    position: relative;
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+.char-card.guy1,
+.char-card.girl2 {
+    background-color: #ccc; /* fallback so you SEE something */
 }
 
 .img-wrap {
@@ -241,7 +251,7 @@ p { line-height: 1.8; }
     inset: 0;
     background: rgba(0,0,0,0.45); /* darkness */
     transition: 0.4s;
-    z-index: 1;
+    z-index: 0;
 }
 
 /* REMOVE DARKNESS ON HOVER */
@@ -355,13 +365,6 @@ p { line-height: 1.8; }
     margin: 15px 0;
 }
 
-/* TYPE */
-.type {
-    border-right: 2px solid #333;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
 @media (max-width: 600px) {
 
     .char-select {
@@ -379,6 +382,10 @@ p { line-height: 1.8; }
     section {
         padding: 70px 15px;
     }
+
+.char-card {
+        height: 180px;
+}
 
     nav a {
         margin: 0 8px;
@@ -438,7 +445,7 @@ From coding to digital art, our paths continue to grow with us. This website is 
 <!-- ABOUT -->
 <section id="about">
 <div class="content">
-<h1 class="type" id="about-title"></h1>
+<h1 id="about-title"></h1>
 <div id="about-content"></div>
 </div>
 </section>
@@ -446,7 +453,7 @@ From coding to digital art, our paths continue to grow with us. This website is 
 <!-- CAREER -->
 <section id="career">
 <div class="content">
-<h1 class="type" id="career-title"></h1>
+<h1 id="career-title"></h1>
 <div id="career-content"></div>
 </div>
 </section>
@@ -454,7 +461,7 @@ From coding to digital art, our paths continue to grow with us. This website is 
 <!-- FUTURE -->
 <section id="future">
 <div class="content">
-<h1 class="type" id="future-title"></h1>
+<h1 id="future-title"></h1>
 <div id="future-content"></div>
 </div>
 </section>
@@ -462,7 +469,7 @@ From coding to digital art, our paths continue to grow with us. This website is 
 <!-- GALLERY -->
 <section id="gallery">
 <div class="content">
-<h1 class="type" id="gallery-title"></h1>
+<h1 id="gallery-title"></h1>
 <div id="gallery-content"></div>
 </div>
 </section>
