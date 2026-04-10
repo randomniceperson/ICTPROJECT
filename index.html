@@ -44,9 +44,23 @@
     width: 100%;
     height: 250px;
     object-fit: cover;
+object-position: center 30%;
     border-radius: 12px;
     margin: 15px 0;
 display: block;
+}
+
+.banner-guy-career {
+    object-position: center 60%;
+}
+
+.banner-girl-career {
+    object-position: center 0%;
+}
+
+
+.banner-guy-future {
+    object-position: center 60%;
 }
 
 .gallery img {
@@ -348,6 +362,10 @@ backdrop-filter: blur(10px);
     transition: opacity 0.6s ease;
 }
 
+.banner-up {
+    object-position: center 20%;
+}
+
 #memory-overlay.active {
     opacity: 1;
 }
@@ -501,7 +519,7 @@ nav a:hover {
 <h1>Looking Back</h1>
 <h2>Joash Michael B. Opiala and Tyra Eunice Whiteside</h2>
 
-<div class="img-placeholder">[ BANNER IMAGE ]</div>
+<img src="https://i.imgur.com/sEuwaek.jpeg" class="banner">
 
 <p>
 This is a story about looking back — at the interests we discovered, the skills we slowly built, and the moments that shaped who we are today.
@@ -606,7 +624,7 @@ const data = {
         about: `
         <h2>Joash Michael B. Opiala</h2>
 
-        <img src="https://i.imgur.com/vyHM3au.png" class="banner">
+        <img src="https://i.imgur.com/uPGmhRR.jpeg" class="banner" class="banner banner-up">
 
         <p>My name is Joash Michael B. Opiala, though most people call me Michael, Bboy, or sometimes Jamie. Growing up, I was more of a shut-in type of person. I preferred staying indoors rather than going out, but that didn’t mean I was doing nothing. Instead, I spent a lot of my time exploring my interests and building skills on my own.</p>
 
@@ -624,7 +642,7 @@ Through these experiences, I developed important skills such as drawing, creativ
 
         careerTitle: "My Career",
         career: `
-        <img src="https://i.imgur.com/vyHM3au.png" class="banner">
+        <img src="https://i.imgur.com/5CgnY9i.jpeg" class="banner banner-guy-career">
         <p>I plan to pursue a career related to technology, especially in coding or software development. My interest in programming continues to grow as I learn more about how systems and applications work. The more I explore different programming languages and tools, the more I become fascinated by how technology can be used to solve real-world problems and improve people’s lives. At the same time, I am also interested in digital art, which allows me to express creativity and design visually engaging content.</p>
 
 <p>As I continue learning, I hope to strengthen my skills in problem-solving, logical thinking, and creativity, which are all essential in the field of technology. By combining my passion for programming and digital art, I aim to create applications and projects that are not only functional but also visually appealing and user-friendly. In the future, I see myself working on meaningful projects, collaborating with other developers and artists, and continuously improving my abilities while contributing to the advancement of modern technology.</p>
@@ -632,7 +650,7 @@ Through these experiences, I developed important skills such as drawing, creativ
 
         futureTitle: "My Future",
         future: `
-<img src="https://i.imgur.com/vyHM3au.png" class="banner">
+<img src="https://i.imgur.com/uQwPxyr.jpeg" class="banner banner-guy-future">
 
 <p>In the future, I see myself as someone who continues improving both in coding and art. I want to build projects, create meaningful work, and develop skills that allow me to express both logic and creativity.</p>
 `
@@ -644,20 +662,23 @@ girl: {
     about: `
     <h2>Tyra Eunice Whiteside</h2>
 
-    <div class="img-fixed">[ HER IMAGE ]</div>
+    <img src="https://i.imgur.com/00zESdk.jpeg" class="banner">
 
     <p>Hi! I’m Eunice, but people call me "Tyra", I'm a not so good student and an aspiring painter. I enjoy expressing myself through colors and creativity. Art allows me to communicate feelings that words sometimes cannot. I'm fond of painting and drawing, exploring different artstyles, observing nature and people for my inspiration. My strengths include creativity, patience, and attention to detail. I value self-expression, dedication, and continuous learning.</p>
     `,
 
     careerTitle: "My Dream Career",
     career: `
-    <div class="img-fixed">[ CAREER IMAGE ]</div>
+
+    <img src="https://i.imgur.com/v3RLhhN.jpeg" class="banner banner-girl-career">
+
     <p>My dream is to become a full-time professional painter. A painter creates artworks using different techniques, styles, and materials such as oil, acrylic, or watercolor. This job involves: creating original artworks, experimenting with colors and techniques, expressing emotions and ideas through paintings and sometimes displaying art in galleries or selling artworks. I chose painting as a career because it makes me feel free and inspired. It allows me to turn my imagination into something real and meaningful. The skills needed for this career is: creativity and imagination, patience and focus, knowledge of colors and techniques, practice and dedication.</p>
     `,
 
     futureTitle: "My Future",
     future: `
-<div class="img-fixed">[ FUTURE IMAGE ]</div>
+<img src="https://i.imgur.com/dhBB3WY.jpeg" class="banner banner-girl-career">
+
 <p>10–15 years from now, I see myself as a successful painter with my own art style. I imagine having my artwork displayed in galleries and being recognized for my creativity.</p>
 
 <p>I will continue improving my skills, learning new techniques, and sharing my art with others. I hope to inspire people through my paintings and maybe even teach art someday.</p>
@@ -673,17 +694,69 @@ Disclaimer: Some images are AI-generated. Credited ones are real and made by us.
 </p>
 <div class="gallery">
 
-    <div class="img-wrap">
+    <div class="img-wrap special">
         <img src="https://i.imgur.com/vyHM3au.png" onclick="openViewer(this.src)">
+<span class="credit">AI-generated</span>
     </div>
 
-    <div class="img-wrap">
+    <div class="img-wrap special">
         <img src="https://i.imgur.com/pwC3tW6.png" onclick="openViewer(this.src)">
+<span class="credit">AI-generated</span>
     </div>
 
     <div class="img-wrap special">
         <img src="https://i.imgur.com/85KY8rn.jpg" onclick="openViewer(this.src)">
-        <span class="credit">By Tyra Eunice Whiteside</span>
+        <span class="credit">Original artwork by Tyra Eunice Whiteside</span>
+    </div>
+
+<div class="img-wrap special">
+        <img src="https://i.imgur.com/sEuwaek.jpeg" onclick="openViewer(this.src)">
+        <span class="credit">Original Artwork by Tyra Eunice Whiteside</span>
+    </div>
+
+<div class="img-wrap special">
+        <img src="https://i.imgur.com/uPGmhRR.jpeg" onclick="openViewer(this.src)">
+        <span class="credit">Real picture by Joash Michael B. Opiala</span>
+    </div>
+
+<div class="img-wrap special">
+        <img src="https://i.imgur.com/5CgnY9i.jpeg" onclick="openViewer(this.src)">
+        <span class="credit">Real picture by Joash Michael B. Opiala</span>
+    </div>
+
+<div class="img-wrap special">
+        <img src="https://i.imgur.com/uQwPxyr.jpeg" onclick="openViewer(this.src)">
+        <span class="credit">Real picture by Joash Michael B. Opiala</span>
+    </div>
+
+<div class="img-wrap special">
+        <img src="https://i.imgur.com/00zESdk.jpeg" onclick="openViewer(this.src)">
+        <span class="credit">Real picture by Tyra Eunice Whiteside</span>
+    </div>
+
+<div class="img-wrap special">
+        <img src="https://i.imgur.com/v3RLhhN.jpeg" onclick="openViewer(this.src)">
+        <span class="credit">Real picture by Tyra Eunice Whiteside</span>
+    </div>
+
+<div class="img-wrap special">
+        <img src="https://i.imgur.com/dhBB3WY.jpeg" onclick="openViewer(this.src)">
+        <span class="credit">Real picture by Tyra Eunice Whiteside</span>
+    </div>
+
+<div class="img-wrap special">
+        <img src="https://media.discordapp.net/attachments/1152396302517276802/1488486684843839538/Untitled39_20260331003606.png?ex=69d97b00&is=69d82980&hm=a25f118c0b2136f2458c9b251a31ace07251f2796f07c36b78db6fdec4a2a151&=&format=webp&quality=lossless&width=527&height=527" onclick="openViewer(this.src)">
+        <span class="credit">Original Artwork by Joash Michael B. Opiala</span>
+    </div>
+
+<div class="img-wrap special">
+        <img src="https://media.discordapp.net/attachments/1152396302517276802/1488490677405745224/received_1617381929634565.jpeg?ex=69d97eb8&is=69d82d38&hm=e11ff6a14afd299af37a4790f6dad1c4b42dbb13942bcba6476ae25a98c398ac&=&format=webp&width=317&height=423" onclick="openViewer(this.src)">
+        <span class="credit">Original Artwork by Joash Michael B. Opiala</span>
+    </div>
+
+<div class="img-wrap special">
+        <img src="https://media.discordapp.net/attachments/1152396302517276802/1488490681625481326/received_4231619727082654.jpeg?ex=69d97eb9&is=69d82d39&hm=56ef737395b1db7fc3dcdf1dd0f857b9c8ee35b12b53b28961e2f826993cb932&=&format=webp&width=423&height=423" onclick="openViewer(this.src)">
+        <span class="credit">Original Artwork by Joash Michael B. Opiala</span>
     </div>
 
 </div>
