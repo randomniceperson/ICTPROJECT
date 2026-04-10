@@ -48,10 +48,12 @@ object-position: center 30%;
     border-radius: 12px;
     margin: 15px 0;
 display: block;
+user-select: none;
+    -webkit-user-drag: none;
 }
 
 .banner-guy-career {
-    object-position: center 60%;
+    object-position: center 5%;
 }
 
 .banner-girl-career {
@@ -91,30 +93,74 @@ display: block;
     max-width: 80%;
     max-height: 80%;
     border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    box-shadow: none;
 
     -webkit-user-drag: none;
     user-drag: none;
 }
 
 body {
-    margin: 0;
     font-family: 'Indie Flower', cursive;
-    background: #f4f4f4;
+    background: linear-gradient(to bottom, #f5f3ef, #eae6df);
     color: #222;
 }
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.08));
+    pointer-events: none;
+    z-index: -1;
+}
+
+.bg-blob {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    background: #d6cfc2;
+    filter: blur(100px);
+    opacity: 0.3;
+    z-index: -3;
+}
+
+.blob1 { top: 10%; left: 5%; }
+.blob2 { bottom: 10%; right: 5%; }
+.blob3 {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    opacity: 0.2;
+}
+
 .content {
     max-width: 720px;
     margin: auto;
 
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(6px);
+
+    border: 1px solid rgba(0,0,0,0.08);
 
     padding: 28px;
     border-radius: 16px;
 
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+
     margin-top: 20px;
+    position: relative;
 }
 
 * {
@@ -128,11 +174,12 @@ nav {
     position: fixed;
     width: 100%;
     top: 0;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(6px);
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
     padding: 12px 0;
     text-align: center;
     z-index: 1000;
+box-shadow: 0 5px 20px rgba(0,0,0,0.08);
 }
 
 nav a {
@@ -141,6 +188,24 @@ nav a {
     color: #333;
     font-size: 14px;
     cursor: pointer;
+position: relative;
+transition: 0.3s;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: #8c7f6d;
+    transition: 0.3s;
+    transform: translateX(-50%);
+}
+
+nav a:hover::after {
+    width: 60%;
 }
 
 nav.locked a:not(.home-btn):not([onclick*="gallery"]):not([onclick*="contact"]) {
@@ -169,6 +234,7 @@ display: block;
     opacity: 1;
     pointer-events: auto;
     z-index: 1; 
+animation: fadeUp 0.6s ease;
 }
 
 .content {
@@ -183,19 +249,15 @@ h1 {
 }
 
 h1::after {
-    content: "";
-    display: block;
     width: 40px;
-    height: 3px;
-    background: #ff9eb5;
-    margin-top: 8px;
-    border-radius: 2px;
+    height: 1px;
+    background: rgba(0,0,0,0.2);
 }
 
 h2 {
     margin-top: 30px;
-    border-left: 3px solid #aaa;
-    padding-left: 10px;
+    font-weight: normal;
+border-left: 2px solid rgba(0,0,0,0.2);
 }
 
 p { line-height: 1.8; }
@@ -248,6 +310,19 @@ p { line-height: 1.8; }
 .char-card.guy1,
 .char-card.girl2 {
     background-color: #ccc; /* fallback lang if wala */
+}
+
+.hero-title {
+    font-size: 48px;
+    text-align: center;
+    color: #2b2b2b;
+}
+
+.hero-sub {
+    text-align: center;
+    font-size: 16px;
+    opacity: 0.7;
+    margin-top: -10px;
 }
 
 .img-wrap {
@@ -406,7 +481,7 @@ backdrop-filter: blur(10px);
     inset: 0;
     overflow: hidden;
     pointer-events: none;
-    z-index: -1;
+    z-index: 0;
 }
 
 .sakura {
@@ -417,14 +492,25 @@ filter: blur(0.3px);
     width: 14px;
     height: 10px;
 
-    background: linear-gradient(135deg, #ffd1dc, #ff9eb5);
+    background: linear-gradient(135deg, #f2b9c2, #e59aa7);
     border-radius: 60% 40% 60% 40%;
 
-    opacity: 0.8;
+    opacity: 0.5;
 
     transform: rotate(0deg);
 
     animation: fall linear forwards;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fall {
@@ -491,6 +577,10 @@ nav a:hover {
 
 <body>
 
+<div class="bg-blob blob1"></div>
+<div class="bg-blob blob2"></div>
+<div class="bg-blob blob3"></div>
+
 <div id="sakura-container"></div>
 
 <nav id="nav" class="locked">
@@ -516,7 +606,8 @@ nav a:hover {
 
 <section id="home" class="active">
 <div class="content">
-<h1>Looking Back</h1>
+<h1 class="hero-title">Looking Back</h1>
+<p class="hero-sub">A journey of art, growth, and future dreams</p>
 <h2>Joash Michael B. Opiala and Tyra Eunice Whiteside</h2>
 
 <img src="https://i.imgur.com/sEuwaek.jpeg" class="banner">
@@ -642,7 +733,7 @@ Through these experiences, I developed important skills such as drawing, creativ
 
         careerTitle: "My Career",
         career: `
-        <img src="https://i.imgur.com/5CgnY9i.jpeg" class="banner banner-guy-career">
+        <img src="https://scontent.fmnl16-1.fna.fbcdn.net/v/t1.15752-9/665944661_26293665893635554_5112684526451768902_n.png?stp=dst-png_s552x414&_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeFsxbgfDuCilZ78RBCKcwhNqr5UgOd-RpuqvlSA535GmyCVTJEsguR1crqQ9abVrNopobZqaHkFbjFAkPDV_9rK&_nc_ohc=ywOU46f9qR8Q7kNvwE3HmvP&_nc_oc=AdrO5xY8PmaMSeWvGZEcFkGGG_pZJvZHS8X9j49dyPfJ_EwXyjv8Oaj2QbvOuHq1p30&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fmnl16-1.fna&_nc_ss=7a32e&oh=03_Q7cD5AFt9DspJ74dKusBZmswCQbUTBO9Ef8z3qaJLgG3KVjAGw&oe=6A0012A5" class="banner banner-guy-career">
         <p>I plan to pursue a career related to technology, especially in coding or software development. My interest in programming continues to grow as I learn more about how systems and applications work. The more I explore different programming languages and tools, the more I become fascinated by how technology can be used to solve real-world problems and improve people’s lives. At the same time, I am also interested in digital art, which allows me to express creativity and design visually engaging content.</p>
 
 <p>As I continue learning, I hope to strengthen my skills in problem-solving, logical thinking, and creativity, which are all essential in the field of technology. By combining my passion for programming and digital art, I aim to create applications and projects that are not only functional but also visually appealing and user-friendly. In the future, I see myself working on meaningful projects, collaborating with other developers and artists, and continuously improving my abilities while contributing to the advancement of modern technology.</p>
@@ -720,8 +811,8 @@ Disclaimer: Some images are AI-generated. Credited ones are real and made by us.
     </div>
 
 <div class="img-wrap special">
-        <img src="https://i.imgur.com/5CgnY9i.jpeg" onclick="openViewer(this.src)">
-        <span class="credit">Real picture by Joash Michael B. Opiala</span>
+        <img src="https://scontent.fmnl16-1.fna.fbcdn.net/v/t1.15752-9/665944661_26293665893635554_5112684526451768902_n.png?stp=dst-png_s552x414&_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeFsxbgfDuCilZ78RBCKcwhNqr5UgOd-RpuqvlSA535GmyCVTJEsguR1crqQ9abVrNopobZqaHkFbjFAkPDV_9rK&_nc_ohc=ywOU46f9qR8Q7kNvwE3HmvP&_nc_oc=AdrO5xY8PmaMSeWvGZEcFkGGG_pZJvZHS8X9j49dyPfJ_EwXyjv8Oaj2QbvOuHq1p30&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fmnl16-1.fna&_nc_ss=7a32e&oh=03_Q7cD5AFt9DspJ74dKusBZmswCQbUTBO9Ef8z3qaJLgG3KVjAGw&oe=6A0012A5" onclick="openViewer(this.src)">
+        <span class="credit">AI-generated</span>
     </div>
 
 <div class="img-wrap special">
